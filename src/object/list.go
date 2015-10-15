@@ -85,3 +85,10 @@ func (list *ListObj) Have(elem string) bool {
 	}
 	return false
 }
+
+func (list *ListObj) Vals(i int) (string, error) {
+	if i >= list.Len() || i < 0 {
+		return "", errors.New("index out of range!")
+	}
+	return list.list[i], nil
+}

@@ -41,24 +41,33 @@ func (m *MapObj) Get() interface{} {
 func (m *MapObj) Set(value string) error {
 	kv := strings.Split(value, ",")
 	kvlen := len(kv)
-	for i := 0; i < kvlen; i = i + 2 {
-		key := strings.Trim(kv[i], " ")
-		val := strings.Trim(kv[i+1], " ")
-		if _, ok := m.GetElem(key); !ok {
-			m.SetElem(key, val)
-		} else {
-			return fmt.Errorf("[error] There are duplicate key : %s !", key)
-		}
-	}
 	if kvlen%2 == 0 {
+		for i := 0; i < kvlen; i = i + 2 {
+			key := strings.Trim(kv[i], " ")
+			val := strings.Trim(kv[i+1], " ")
+			if _, ok := m.GetElem(key); !ok {
+				m.SetElem(key, val)
+			} else {
+				return fmt.Errorf("[error] There is duplicate key : %s !", key)
+			}
+		}
 		return nil
 	} else {
+		for i := 0; i < kvlen-1; i = i + 2 {
+			key := strings.Trim(kv[i], " ")
+			val := strings.Trim(kv[i+1], " ")
+			if _, ok := m.GetElem(key); !ok {
+				m.SetElem(key, val)
+			} else {
+				return fmt.Errorf("[error] There is duplicate key : %s !", key)
+			}
+		}
 		key := strings.Trim(kv[kvlen-1], " ")
 		if _, ok := m.GetElem(key); !ok {
 			m.SetElem(key, "")
 			return nil
 		} else {
-			return fmt.Errorf("[error] There are duplicate key : %s !", key)
+			return fmt.Errorf("[error] There is duplicate key : %s !", key)
 		}
 	}
 }
@@ -69,7 +78,6 @@ func (m *MapObj) String() string {
 		ret = ret + fmt.Sprintf("%s,%s,", k, v)
 	}
 	ret = strings.TrimRight(ret, ",")
-	fmt.Printf("string value : %s\n", ret)
 	return ret
 }
 

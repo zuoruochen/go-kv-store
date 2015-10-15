@@ -4,7 +4,7 @@ import (
 	"db"
 	"fmt"
 	"object"
-	"reflect"
+	//	"reflect"
 	"strings"
 )
 
@@ -38,20 +38,49 @@ func main() {
 	out := trimspace(in)
 	fmt.Println(out)
 	mydb := db.NewMyDB()
-	mapobj := object.NewMapObj()
-	mapobj.Set(" z , zzz , r, rrr,c,  ccc ")
-	if val, ok := mapobj.GetElem("c"); ok {
-		fmt.Println(val)
-	}
-	fmt.Println(mapobj.String())
-	obj := db.NewObject(mapobj)
 
-	fmt.Println(reflect.TypeOf(obj))
-	cc := *obj
-	mydb.SetValue("zrc", cc)
-	value, err := mydb.GetValue("zzz")
-	if err != nil {
-		fmt.Printf("%s", reflect.TypeOf(value.Value))
+	mapobj := object.NewMapObj()
+	errs := mapobj.Set(" z , zzz , r, rrr,c,mmm ")
+	if errs != nil {
+		panic(errs)
 	}
+	obj1 := db.NewObject(mapobj)
+	mydb.SetValue("zrc", obj1)
+
+	strobj := object.NewStringObj()
+	strobj.Set("make you feel my love!")
+	obj2 := db.NewObject(strobj)
+	mydb.SetValue("dongjia", obj2)
+
+	listobj := object.NewListObj()
+	listobj.Set("all,out,of,love")
+	listobj.Sort()
+	obj3 := db.NewObject(listobj)
+	mydb.SetValue("shanghai", obj3)
+
+	value1, err := mydb.GetValue("zrc")
+	if err != nil {
+		fmt.Println(err)
+	} else {
+		fmt.Println(value1.Value.String())
+		fmt.Println(value1.Value.(*object.MapObj).GetElem("c"))
+	}
+
+	value2, err := mydb.GetValue("dongjia")
+	if err != nil {
+		fmt.Println(err)
+	} else {
+		fmt.Println(value2.Value.String())
+
+	}
+
+	value3, err := mydb.GetValue("shanghai")
+	if err != nil {
+		fmt.Println(err)
+	} else {
+		fmt.Println(value3.Value.String())
+		fmt.Println(value3.Value.(*object.ListObj).Vals(4))
+	}
+
 	return
 }
