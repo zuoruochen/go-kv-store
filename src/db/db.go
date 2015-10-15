@@ -7,14 +7,14 @@ import (
 	"sync"
 )
 
-type Object struct {
-	//	Types    int
-	RW    *sync.RWMutex
-	Value Value
+type object struct {
+	//if two or  more operations on this object ,we should lock the RW first
+	rw    *sync.RWMutex
+	value Value
 }
 
 type MyDB struct {
-	DB map[string]Object
+	DB map[string]*object
 }
 
 // all object should implement this interface
@@ -36,42 +36,44 @@ type Value interface {
 // new a MyDB struct
 func NewMyDB() *MyDB {
 	return &MyDB{
-		DB: make(map[string]Object),
+		DB: make(map[string]*object),
 	}
 }
 
-// new a Object. Parm is a specific object type
+// new a object. Parm is a specific object type
 // now there are three types object: *MapObj,*StrObj,*ListObj
 // we can call NewMapObj(),NewStringObj() or NewListObj() to get a specific object
-func NewObject(value Value) *Object {
-	return &Object{
-		Value: value,
+func newObject(value Value) *object {
+	return &object{
+		rw:    new(sync.RWMutex),
+		value: value,
 	}
 }
 
-// what should be emphasized is that the return value's type is *Object
-// however any operation on *Object would not affect the db
-// there are two methods to affect db:  SetValue() and DelKey()
-func (db *MyDB) GetValue(key string) (*Object, error) {
+func (db *MyDB) GetValue(key string) (Value, error) {
 	obj, ok := db.DB[key]
 	if ok {
-		return &obj, nil
+		obj.rw.Lock()
+		val := obj.value
+		obj.rw.Unlock()
+		return val, nil
 	} else {
 		return nil, errors.New("the key is not in db!")
 	}
 }
 
-func (db *MyDB) SetValue(key string, obj *Object) int {
-	_, ok := db.DB[key]
+func (db *MyDB) SetValue(key string, val Value) int {
+	obj, ok := db.DB[key]
 	if ok {
+		obj.rw.Lock()
 		fmt.Println("The key has value,update value")
-		db.DB[key] = *obj
-
+		obj.value = val
+		obj.rw.Unlock()
 		return 0
 	} else {
 		//		fmt.Printf("set value:%v\n", reflect.TypeOf(obj))
-		db.DB[key] = *obj
-
+		newobj := newObject(val)
+		db.DB[key] = newobj
 		return 1
 	}
 }

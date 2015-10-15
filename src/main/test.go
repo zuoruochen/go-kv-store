@@ -44,33 +44,30 @@ func main() {
 	if errs != nil {
 		panic(errs)
 	}
-	obj1 := db.NewObject(mapobj)
-	mydb.SetValue("zrc", obj1)
+	mydb.SetValue("zrc", mapobj)
 
 	strobj := object.NewStringObj()
 	strobj.Set("make you feel my love!")
-	obj2 := db.NewObject(strobj)
-	mydb.SetValue("dongjia", obj2)
+	mydb.SetValue("dongjia", strobj)
 
 	listobj := object.NewListObj()
 	listobj.Set("all,out,of,love")
 	listobj.Sort()
-	obj3 := db.NewObject(listobj)
-	mydb.SetValue("shanghai", obj3)
+	mydb.SetValue("shanghai", listobj)
 
 	value1, err := mydb.GetValue("zrc")
 	if err != nil {
 		fmt.Println(err)
 	} else {
-		fmt.Println(value1.Value.String())
-		fmt.Println(value1.Value.(*object.MapObj).GetElem("c"))
+		fmt.Println(value1.String())
+		fmt.Println(value1.(*object.MapObj).GetElem("c"))
 	}
 
 	value2, err := mydb.GetValue("dongjia")
 	if err != nil {
 		fmt.Println(err)
 	} else {
-		fmt.Println(value2.Value.String())
+		fmt.Println(value2.String())
 
 	}
 
@@ -78,8 +75,8 @@ func main() {
 	if err != nil {
 		fmt.Println(err)
 	} else {
-		fmt.Println(value3.Value.String())
-		fmt.Println(value3.Value.(*object.ListObj).Vals(4))
+		fmt.Println(value3.String())
+		fmt.Println(value3.(*object.ListObj).Vals(4))
 	}
 
 	return
