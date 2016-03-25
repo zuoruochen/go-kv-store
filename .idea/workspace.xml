@@ -2,17 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="e5438c71-92b1-4834-b1c3-0a454dd8fa38" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/GOPATH__go_kv_store_.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/api/server/command.go" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/goLibraries.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/pkg/darwin_amd64/db.a" afterPath="$PROJECT_DIR$/pkg/darwin_amd64/db.a" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/test" afterPath="$PROJECT_DIR$/src/main/test" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/README.md" afterPath="$PROJECT_DIR$/README.md" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/client.go" afterPath="$PROJECT_DIR$/src/main/client.go" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/db/db.go" afterPath="$PROJECT_DIR$/src/db/db.go" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/server.go" afterPath="$PROJECT_DIR$/src/main/server.go" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/test.go" afterPath="$PROJECT_DIR$/src/main/test.go" />
     </list>
     <ignored path="go-kv-store.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -57,11 +47,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="server.go" pinned="false" current-in-tab="true">
+      <file leaf-file-name="server.go" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/server.go">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.3803419">
-              <caret line="140" column="0" selection-start-line="140" selection-start-column="0" selection-end-line="140" selection-end-column="0" />
+            <state vertical-scroll-proportion="0.0">
+              <caret line="142" column="21" selection-start-line="142" selection-start-column="21" selection-end-line="142" selection-end-column="21" />
               <folding>
                 <element signature="e#14#112#0" expanded="true" />
               </folding>
@@ -79,11 +69,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="README.md" pinned="false" current-in-tab="false">
+      <file leaf-file-name="README.md" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/README.md">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-1.6666666">
-              <caret line="3" column="1" selection-start-line="3" selection-start-column="1" selection-end-line="3" selection-end-column="1" />
+            <state vertical-scroll-proportion="0.6551724">
+              <caret line="19" column="2" selection-start-line="19" selection-start-column="2" selection-end-line="19" selection-end-column="2" />
               <folding />
             </state>
           </provider>
@@ -166,9 +156,9 @@
         <option value="$PROJECT_DIR$/src/main/test.go" />
         <option value="$PROJECT_DIR$/src/api/client/command.go" />
         <option value="$PROJECT_DIR$/src/db/command.go" />
-        <option value="$PROJECT_DIR$/README.md" />
         <option value="$PROJECT_DIR$/src/api/server/command.go" />
         <option value="$PROJECT_DIR$/src/main/server.go" />
+        <option value="$PROJECT_DIR$/README.md" />
       </list>
     </option>
   </component>
@@ -212,6 +202,10 @@
             <PATH_ELEMENT>
               <option name="myItemId" value="go-kv-store" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="External Libraries" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ExternalLibrariesNode" />
             </PATH_ELEMENT>
           </PATH>
           <PATH>
@@ -715,12 +709,12 @@
       <created>1458876636282</created>
       <option name="number" value="Default" />
       <updated>1458876636282</updated>
-      <workItem from="1458876638814" duration="14471000" />
+      <workItem from="1458876638814" duration="14678000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="14471000" />
+    <option name="totallyTimeSpent" value="14678000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1280" height="800" extended-state="0" />
@@ -730,7 +724,7 @@
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32876712" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.329582" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -776,14 +770,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="9" column="6" selection-start-line="9" selection-start-column="6" selection-end-line="9" selection-end-column="6" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/README.md">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-1.6666666">
-          <caret line="3" column="1" selection-start-line="3" selection-start-column="1" selection-end-line="3" selection-end-column="1" />
           <folding />
         </state>
       </provider>
@@ -858,11 +844,19 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/server.go">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.3803419">
-          <caret line="140" column="0" selection-start-line="140" selection-start-column="0" selection-end-line="140" selection-end-column="0" />
+        <state vertical-scroll-proportion="0.0">
+          <caret line="142" column="21" selection-start-line="142" selection-start-column="21" selection-end-line="142" selection-end-column="21" />
           <folding>
             <element signature="e#14#112#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/README.md">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.6551724">
+          <caret line="19" column="2" selection-start-line="19" selection-start-column="2" selection-end-line="19" selection-end-column="2" />
+          <folding />
         </state>
       </provider>
     </entry>
