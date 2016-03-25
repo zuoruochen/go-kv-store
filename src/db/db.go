@@ -1,7 +1,7 @@
 package db
 
 import (
-	"errors"
+	//"errors"
 	"fmt"
 	//	"reflect"
 	"sync"
@@ -40,7 +40,7 @@ func NewMyDB() *MyDB {
 	}
 }
 
-// new a object. Parm is a specific object type
+// new a object. Param is a specific object type
 // now there are three types object: *MapObj,*StrObj,*ListObj
 // we can call NewMapObj(),NewStringObj() or NewListObj() to get a specific object
 func newObject(value Value) *object {
@@ -58,7 +58,7 @@ func (db *MyDB) GetValue(key string) (Value, error) {
 		obj.rw.Unlock()
 		return val, nil
 	} else {
-		return nil, errors.New("the key is not in db!")
+		return nil, fmt.Errorf("[ %s ] is not in db!", key)
 	}
 }
 

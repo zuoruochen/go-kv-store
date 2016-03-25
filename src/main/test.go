@@ -63,14 +63,14 @@ func main() {
 		fmt.Println(value1.(*object.MapObj).GetElem("c"))
 	}
 
-	value2, err := mydb.GetValue("dongjia")
+	value2, err := mydb.GetValue("qiqi")
 	if err != nil {
 		fmt.Println(err)
 	} else {
 		fmt.Println(value2.String())
 
 	}
-
+	mydb.DelKey("shanghai")
 	value3, err := mydb.GetValue("shanghai")
 	if err != nil {
 		fmt.Println(err)

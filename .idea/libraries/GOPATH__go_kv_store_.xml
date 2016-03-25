@@ -1,0 +1,53 @@
+<component name="libraryTable">
+  <library name="GOPATH &lt;go-kv-store&gt;">
+    <CLASSES>
+      <root url="file://$USER_HOME$/Goproject/src/.DS_Store" />
+      <root url="file://$USER_HOME$/Goproject/src/gopkg.in" />
+      <root url="file://$USER_HOME$/Goproject/src/post" />
+      <root url="file://$USER_HOME$/Goproject/src/new_data_api" />
+      <root url="file://$USER_HOME$/Goproject/src/sendmail" />
+      <root url="file://$USER_HOME$/Goproject/src/test" />
+      <root url="file://$USER_HOME$/Goproject/src/example" />
+      <root url="file://$USER_HOME$/Goproject/src/adweb" />
+      <root url="file://$USER_HOME$/Goproject/src/helloworld" />
+      <root url="file://$USER_HOME$/Goproject/src/github.com" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+    <excluded>
+      <root url="file://$USER_HOME$/Goproject/src/github.com/docker/docker/hack/make/.build-deb" />
+      <root url="file://$USER_HOME$/Goproject/src/github.com/nsf/gocode/_gccgo" />
+      <root url="file://$USER_HOME$/Goproject/src/github.com/nsf/gocode/_goremote" />
+      <root url="file://$USER_HOME$/Goproject/src/github.com/smartystreets/assertions/.git" />
+      <root url="file://$USER_HOME$/Goproject/src/github.com/docker/docker/hack/make/.resources-windows" />
+      <root url="file://$USER_HOME$/Goproject/src/github.com/howeyc/fsnotify/.git" />
+      <root url="file://$USER_HOME$/Goproject/src/github.com/nsf/gocode/_testing" />
+      <root url="file://$USER_HOME$/Goproject/src/gopkg.in/redis.v3/testdata" />
+      <root url="file://$USER_HOME$/Goproject/src/github.com/go-sql-driver/mysql/.git" />
+      <root url="file://$USER_HOME$/Goproject/src/github.com/beego/bee/testdata" />
+      <root url="file://$USER_HOME$/Goproject/src/github.com/jtolds/gls/.git" />
+      <root url="file://$USER_HOME$/Goproject/src/github.com/smartystreets/assertions/internal/oglemock/createmock/testdata" />
+      <root url="file://$USER_HOME$/Goproject/src/github.com/docker/docker/pkg/tarsum/testdata" />
+      <root url="file://$USER_HOME$/Goproject/src/gopkg.in/redis.v3/.git" />
+      <root url="file://$USER_HOME$/Goproject/src/github.com/smartystreets/goconvey/.git" />
+      <root url="file://$USER_HOME$/Goproject/src/github.com/Sirupsen/logrus/.git" />
+      <root url="file://$USER_HOME$/Goproject/src/github.com/slene/margo/something-borrowed/types/testdata" />
+      <root url="file://$USER_HOME$/Goproject/src/github.com/beego/bee/.git" />
+      <root url="file://$USER_HOME$/Goproject/src/github.com/redis/.git" />
+      <root url="file://$USER_HOME$/Goproject/src/github.com/nsf/gocode/.git" />
+      <root url="file://$USER_HOME$/Goproject/src/github.com/astaxie/beego/.git" />
+      <root url="file://$USER_HOME$/Goproject/src/new_data_api/.idea" />
+      <root url="file://$USER_HOME$/Goproject/src/github.com/astaxie/beego/utils/testdata" />
+      <root url="file://$USER_HOME$/Goproject/src/github.com/docker/docker/pkg/archive/testdata" />
+      <root url="file://$USER_HOME$/Goproject/src/github.com/docker/docker/.git" />
+      <root url="file://$USER_HOME$/Goproject/src/adweb/.git" />
+      <root url="file://$PROJECT_DIR$" />
+      <root url="file://$USER_HOME$/Goproject/src/gopkg.in/bsm/ratelimit.v1/.git" />
+      <root url="file://$USER_HOME$/Goproject/src/github.com/docker/docker/hack/make/.build-rpm" />
+      <root url="file://$USER_HOME$/Goproject/src/github.com/smartystreets/assertions/internal/oglemock/generate/testdata" />
+      <root url="file://$USER_HOME$/Goproject/src/github.com/docker/docker/docs/reference/api/_static" />
+      <root url="file://$USER_HOME$/Goproject/src/github.com/slene/margo/.git" />
+      <root url="file://$USER_HOME$/Goproject/src/github.com/lib/pq/.git" />
+    </excluded>
+  </library>
+</component>

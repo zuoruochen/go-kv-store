@@ -10,7 +10,7 @@ import (
 	"strings"
 )
 
-func trimspace(s string) (ret []string) {
+func trimSpace(s string) (ret []string) {
 	s = strings.Trim(s, " ")
 	i := 0
 	j := 0
@@ -48,7 +48,7 @@ func main() {
 		data := line[:len(line)-1]
 		/*
 			fmt.Println(line)
-			list := trimspace(string(line[:]))
+			list := trimSpace(string(line[:]))
 			fmt.Println(list)
 			com, _ := strconv.Atoi(list[0])
 			test.command = uint8(com)
