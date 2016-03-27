@@ -1,4 +1,5 @@
+go-kv-store.iml
 conf/*
 bin/*
+pkg/*
 .idea/
-go-kv-store.iml
