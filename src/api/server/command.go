@@ -2,10 +2,12 @@ package server
 
 import (
 	"db"
+	"fmt"
 	"strconv"
+	"object"
 )
 
-/* Three types input
+/* Three types of input
  * command
  * command + key
  * command + key + value
@@ -30,7 +32,7 @@ func Select(conn *Connection) {
 		return
 	}
 	conn.DB = MyServer.DB[dbNum]
-	conn.RespData = "select db[" + dbNum + "]"
+	conn.RespData = "select db[" + strconv.Itoa(dbNum) + "]"
 	return
 }
 
@@ -78,7 +80,9 @@ func Lget(conn *Connection) {
 
 func Set(conn *Connection){
 	conn.DB.Lock()
-	ret := conn.DB.SetValue(conn.ReqData.Key,conn.ReqData.Data)
+	strobj := object.NewStringObj()
+	strobj.Set(conn.ReqData.Data)
+	ret := conn.DB.SetValue(conn.ReqData.Key,strobj)
 	conn.DB.Unlock()
 	switch ret {
 	case db.UPDATE : conn.RespData = conn.ReqData.Command + " Update " + conn.ReqData.Key
@@ -87,11 +91,50 @@ func Set(conn *Connection){
 }
 
 func Cmap(conn *Connection) {
-	Set(conn)
+	conn.DB.Lock()
+	mapobj := object.NewMapObj()
+	mapobj.Set(conn.ReqData.Data)
+	ret := conn.DB.SetValue(conn.ReqData.Key,mapobj)
+	conn.DB.Unlock()
+	switch ret {
+	case db.UPDATE : conn.RespData = conn.ReqData.Command + " Update " + conn.ReqData.Key
+	case db.CREATE : conn.RespData = conn.ReqData.Command + " Create " + conn.ReqData.Key
+	}
 }
 
 func Clist(conn *Connection) {
-	Set(conn)
+	conn.DB.Lock()
+	listobj := object.NewListObj()
+	listobj.Set(conn.ReqData.Data)
+	ret := conn.DB.SetValue(conn.ReqData.Key,listobj)
+	conn.DB.Unlock()
+	switch ret {
+	case db.UPDATE : conn.RespData = conn.ReqData.Command + " Update " + conn.ReqData.Key
+	case db.CREATE : conn.RespData = conn.ReqData.Command + " Create " + conn.ReqData.Key
+	}
 }
 
 //----------------------------------------------------------------------------------------------------------------------
+//TODO: try to use reflect.methodbyname to call the command,but this would make the commands as the methods of the db.MyDB object
+func ExecCommand(conn *Connection) error{
+	switch conn.ReqData.Command {
+	case "help"		:	Help()
+	case "select"	:	Select(conn)
+	case "exist"	:	Exist(conn)
+	case "get"		:	Get(conn)
+	case "del"		:	Del(conn)
+	case "mget"		:	Mget(conn)
+	case "lget"		:	Lget(conn)
+	case "set"		:	Set(conn)
+	case "cmap"		:	Cmap(conn)
+	case "clist"	:	Clist(conn)
+	default:
+		Help()
+	}
+	_,err := conn.Conn.Write([]byte(conn.RespData))
+	if err != nil {
+		fmt.Println("write data to client error")
+		return err
+	}
+	return nil
+}

@@ -5,37 +5,14 @@ import (
 	"fmt"
 	"object"
 	//	"reflect"
-	"strings"
+	//"strings"
+	"util"
 )
 
-func trimspace(s string) (ret []string) {
-	s = strings.Trim(s, " ")
-	i := 0
-	j := 0
-
-	for i < len(s) {
-
-		if s[i] == ' ' {
-
-			ret = append(ret, s[j:i])
-			i++
-			for s[i] == ' ' {
-				i++
-			}
-			j = i
-			i++
-		} else {
-			i++
-		}
-	}
-
-	ret = append(ret, s[j:i])
-	return ret
-}
 
 func main() {
 	in := "   fauns         sakjdkl  sakd "
-	out := trimspace(in)
+	out := util.TrimSpace(in)
 	fmt.Println(out)
 	mydb := db.NewMyDB()
 

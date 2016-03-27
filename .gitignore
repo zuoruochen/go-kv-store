@@ -1,2 +1,4 @@
 conf/*
 bin/*
+.idea/*
+go-kv-store.iml

@@ -5,8 +5,7 @@ import  (
 	"net"
 )
 
-
-var DBnum int = 16
+const DBnum int = 16
 
 var MyServer *Zserver
 

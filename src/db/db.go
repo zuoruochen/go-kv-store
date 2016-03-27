@@ -18,8 +18,10 @@ type MyDB struct {
 	sync.RWMutex
 }
 
+type Status int
+
 const (
-	CREATE = iota
+	CREATE  Status = iota
 	UPDATE
 )
 
@@ -70,7 +72,7 @@ func (db *MyDB) GetValue(key string) (Value, error) {
 }
 
 
-func (db *MyDB) SetValue(key string, val Value) int {
+func (db *MyDB) SetValue(key string, val Value) Status {
 	obj, ok := db.db[key]
 	if ok {
 		obj.rw.Lock()

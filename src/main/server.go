@@ -10,40 +10,19 @@ import (
 	"strings"
 	"errors"
 	"api/server"
+	"util"
 )
 
-
-
-/*
-func trimspace(s string) (ret []string) {
-	s = strings.Trim(s, " ")
-	i := 0
-	j := 0
-
-	for i < len(s) {
-		if s[i] == ' ' {
-			ret = append(ret, s[j:i])
-			i++
-			for s[i] == ' ' {
-				i++
-			}
-			j = i
-			i++
-		} else {
-			i++
-		}
-	}
-	ret = append(ret, s[j:i])
-	return ret
-}
-*/
-
+var connected = 0
 
 func handleEvent(conn *server.Connection) {
 	fmt.Println("in handle!")
 	buf := make([]byte, 1024)
-	defer conn.Conn.Close()
-
+	defer func() {
+		connected--
+		fmt.Printf("Conection closed! Now there are %d connection remained",connected)
+		conn.Conn.Close()
+	}()
 	for {
 		n, err := conn.Conn.Read(buf)
 		if err != nil {
@@ -66,31 +45,31 @@ func handleEvent(conn *server.Connection) {
 			}
 		}
 		conn.ReqData = &server.Req{Command:command,Key:key,Data:data}
+
 		//todo: exec command,before exec ,get the key's rwlock
-		execCommand(conn)
+		err = server.ExecCommand(conn)
+		if err != nil {
+			return
+		}
 	}
-}
-
-
-func execCommand(conn *server.Connection) (error) {
-	return "",nil
 }
 
 
 // return command, key(if exist) ,data(if exist),error
 func getCommandAndData(commandLine string)(string,string,string,error) {
-	command,left,err := getWord(commandLine)
+	command,left,err := util.GetWord(commandLine)
+	command = strings.ToLower(command)
 	if err != nil {
 		return "","","",errors.New("command is null")
 	}
-	if _,ok := db.Cmd[strings.ToLower(command)]; !ok {
+	if _,ok := db.Cmd[command]; !ok {
 		return "","","",errors.New("unsupport command")
 	}
 	if command == "help" {
 		return command,"","",nil
 	}
 
-	key,left,err := getWord(left)
+	key,left,err := util.GetWord(left)
 	if command != "set" && command != "cmap" && command != "clist" {
 		if err != nil {
 			return command,"","",errors.New(command+" need args")
@@ -100,7 +79,7 @@ func getCommandAndData(commandLine string)(string,string,string,error) {
 		}
 		return command,key,"",nil
 	}
-	data,left,err := getWord(left)
+	data,left,err := util.GetWord(left)
 	if err != nil {
 		return command,key,"",errors.New(command + " " + key + " need data")
 	}
@@ -110,41 +89,22 @@ func getCommandAndData(commandLine string)(string,string,string,error) {
 	return command, key, data, nil
 }
 
-// get a word from a string
-// return a word and left string
-func getWord(str string)(string,string,error) {
-	s := strings.TrimLeft(str," ")
-	if len(s) == 0 {
-		return "","",errors.New("blank string")
-	}
-	sl := strings.Split(s," ")
-	word := sl[0]
-	var idx = len(word)
-	if idx == len(s) {
-		return word,"",nil
-	}
-	return word,s[idx:len(s)],nil
-}
-
-
-
 func main() {
 	//var test interface{} = "jsahdjakjd"
-
-
 	ln, err := net.Listen("tcp", ":8888")
 	if err != nil {
 		fmt.Println(err)
 		return
 	}
-
+	defer ln.Close()
 	for {
 		conn, err := ln.Accept()
 		if err != nil {
 			fmt.Println(err)
 			continue
 		}
-		fmt.Println("new connection!")
+		connected++
+		fmt.Printf("New connection! There are %d connections",connected)
 		go handleEvent(&server.Connection{Conn:conn,DB:server.MyServer.DB[0]})
 	}
 

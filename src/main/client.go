@@ -7,30 +7,10 @@ import (
 	"net"
 	"os"
 	//	"strconv"
-	"strings"
+	//"strings"
+	//"util"
 )
 
-func trimSpace(s string) (ret []string) {
-	s = strings.Trim(s, " ")
-	i := 0
-	j := 0
-
-	for i < len(s) {
-		if s[i] == ' ' {
-			ret = append(ret, s[j:i])
-			i++
-			for s[i] == ' ' {
-				i++
-			}
-			j = i
-			i++
-		} else {
-			i++
-		}
-	}
-	ret = append(ret, s[j:i])
-	return ret
-}
 
 func main() {
 	conn, err := net.Dial("tcp", "127.0.0.1:8888")
@@ -48,7 +28,7 @@ func main() {
 		data := line[:len(line)-1]
 		/*
 			fmt.Println(line)
-			list := trimSpace(string(line[:]))
+			list := util.TrimSpace(string(line[:]))
 			fmt.Println(list)
 			com, _ := strconv.Atoi(list[0])
 			test.command = uint8(com)
