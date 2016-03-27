@@ -10,7 +10,7 @@ var commands [][]string = [][]string{
 	{"cmap", "create a map key"},
 	{"mget", "get value from map key value"},
 	{"clist", "create a list key"},
-	{"lget", "get value from list key value,parm is index"},
+	{"lget", "get value from list key value,param is index"},
 }
 
 var Cmd map[string]string

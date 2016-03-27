@@ -14,8 +14,15 @@ type object struct {
 }
 
 type MyDB struct {
-	DB map[string]*object
+	db map[string]*object
+	sync.RWMutex
 }
+
+const (
+	CREATE = iota
+	UPDATE
+)
+
 
 // all object should implement this interface
 type Value interface {
@@ -36,7 +43,7 @@ type Value interface {
 // new a MyDB struct
 func NewMyDB() *MyDB {
 	return &MyDB{
-		DB: make(map[string]*object),
+		db: make(map[string]*object),
 	}
 }
 
@@ -51,40 +58,41 @@ func newObject(value Value) *object {
 }
 
 func (db *MyDB) GetValue(key string) (Value, error) {
-	obj, ok := db.DB[key]
+	obj, ok := db.db[key]
 	if ok {
-		obj.rw.Lock()
+		obj.rw.RLock()
 		val := obj.value
-		obj.rw.Unlock()
+		obj.rw.RUnlock()
 		return val, nil
 	} else {
 		return nil, fmt.Errorf("[ %s ] is not in db!", key)
 	}
 }
 
+
 func (db *MyDB) SetValue(key string, val Value) int {
-	obj, ok := db.DB[key]
+	obj, ok := db.db[key]
 	if ok {
 		obj.rw.Lock()
 		fmt.Println("The key has value,update value")
 		obj.value = val
 		obj.rw.Unlock()
-		return 0
+		return UPDATE
 	} else {
 		//		fmt.Printf("set value:%v\n", reflect.TypeOf(obj))
 		newobj := newObject(val)
-		db.DB[key] = newobj
-		return 1
+		db.db[key] = newobj
+		return CREATE
 	}
 }
 
-// return val: 0 reps delete key successfully
-//			   1  reps there is no key in db
-func (db *MyDB) DelKey(key string) int {
-	_, ok := db.DB[key]
+// return val: true reps delete key successfully
+//			   false  reps there is no key in db
+func (db *MyDB) DelKey(key string) bool {
+	_, ok := db.db[key]
 	if ok {
-		delete(db.DB, key)
-		return 1
+		delete(db.db, key)
+		return true
 	}
-	return 0
+	return false
 }

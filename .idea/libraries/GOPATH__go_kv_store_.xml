@@ -1,16 +1,16 @@
 <component name="libraryTable">
   <library name="GOPATH &lt;go-kv-store&gt;">
     <CLASSES>
-      <root url="file://$USER_HOME$/Goproject/src/.DS_Store" />
       <root url="file://$USER_HOME$/Goproject/src/gopkg.in" />
+      <root url="file://$USER_HOME$/Goproject/src/adweb" />
+      <root url="file://$USER_HOME$/Goproject/src/example" />
+      <root url="file://$USER_HOME$/Goproject/src/helloworld" />
+      <root url="file://$USER_HOME$/Goproject/src/github.com" />
+      <root url="file://$USER_HOME$/Goproject/src/.DS_Store" />
       <root url="file://$USER_HOME$/Goproject/src/post" />
       <root url="file://$USER_HOME$/Goproject/src/new_data_api" />
       <root url="file://$USER_HOME$/Goproject/src/sendmail" />
       <root url="file://$USER_HOME$/Goproject/src/test" />
-      <root url="file://$USER_HOME$/Goproject/src/example" />
-      <root url="file://$USER_HOME$/Goproject/src/adweb" />
-      <root url="file://$USER_HOME$/Goproject/src/helloworld" />
-      <root url="file://$USER_HOME$/Goproject/src/github.com" />
     </CLASSES>
     <JAVADOC />
     <SOURCES />

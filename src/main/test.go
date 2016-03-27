@@ -48,7 +48,7 @@ func main() {
 
 	strobj := object.NewStringObj()
 	strobj.Set("make you feel my love!")
-	mydb.SetValue("dongjia", strobj)
+	mydb.SetValue("qiqi", strobj)
 
 	listobj := object.NewListObj()
 	listobj.Set("all,out,of,love")

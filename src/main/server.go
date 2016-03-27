@@ -9,19 +9,10 @@ import (
 	//"object"
 	"strings"
 	"errors"
+	"api/server"
 )
 
-var dbnum int = 16
 
-type zserver struct {
-	db [dbnum]*db.MyDB
-}
-
-
-type connection struct {
-	conn net.Conn
-	db *db.MyDB
-}
 
 /*
 func trimspace(s string) (ret []string) {
@@ -47,13 +38,14 @@ func trimspace(s string) (ret []string) {
 }
 */
 
-func handleEvent(conn *connection) {
+
+func handleEvent(conn *server.Connection) {
 	fmt.Println("in handle!")
 	buf := make([]byte, 1024)
-	defer conn.conn.Close()
+	defer conn.Conn.Close()
 
 	for {
-		n, err := conn.conn.Read(buf)
+		n, err := conn.Conn.Read(buf)
 		if err != nil {
 			if err.Error() == "EOF" {
 				fmt.Println("client closed!")
@@ -67,20 +59,20 @@ func handleEvent(conn *connection) {
 		commandLine := string(buf[0:n])
 		command,key,data,err := getCommandAndData(commandLine)
 		if err != nil {
-			n,err = conn.conn.Write([]byte(err.Error()))
+			n,err = conn.Conn.Write([]byte(err.Error()))
 			if err != nil {
 				fmt.Println("write data to client error")
 				return
 			}
 		}
-
+		conn.ReqData = &server.Req{Command:command,Key:key,Data:data}
 		//todo: exec command,before exec ,get the key's rwlock
-		execCommand(command,key,data,conn)
+		execCommand(conn)
 	}
 }
 
 
-func execCommand(command,key,data string,conn *connection) (result string,error) {
+func execCommand(conn *server.Connection) (error) {
 	return "",nil
 }
 
@@ -139,10 +131,6 @@ func getWord(str string)(string,string,error) {
 func main() {
 	//var test interface{} = "jsahdjakjd"
 
-	z := &zserver{}
-	for i:=0 ; i < dbnum; i++ {
-		z.db[i] = db.NewMyDB()
-	}
 
 	ln, err := net.Listen("tcp", ":8888")
 	if err != nil {
@@ -157,7 +145,7 @@ func main() {
 			continue
 		}
 		fmt.Println("new connection!")
-		go handleEvent(&connection{conn:conn,db:z.db[0]})
+		go handleEvent(&server.Connection{Conn:conn,DB:server.MyServer.DB[0]})
 	}
 
 }
