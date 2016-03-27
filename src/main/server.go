@@ -1,3 +1,6 @@
+// TODO :  Add persistent storage command, periodically write data to disk
+// TODO :  After start server, the server will load data in memory firstly
+
 package main
 
 import (
@@ -33,7 +36,7 @@ func handleEvent(conn *server.Connection) {
 			}
 			return
 		}
-		//todo: parse command
+
 		fmt.Println(string(buf[0:n]))
 		commandLine := string(buf[0:n])
 		command,key,data,err := getCommandAndData(commandLine)
@@ -46,7 +49,6 @@ func handleEvent(conn *server.Connection) {
 		}
 		conn.ReqData = &server.Req{Command:command,Key:key,Data:data}
 
-		//todo: exec command,before exec ,get the key's rwlock
 		err = server.ExecCommand(conn)
 		if err != nil {
 			return
