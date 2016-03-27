@@ -11,7 +11,7 @@ import (
 	//"util"
 )
 
-
+// TODO : try to realize pseudo terminal
 func main() {
 	conn, err := net.Dial("tcp", "127.0.0.1:8888")
 	if err != nil {
@@ -20,8 +20,9 @@ func main() {
 	}
 	defer conn.Close()
 	fmt.Println(err)
-
+	buf := make([]byte, 1024)
 	reader := bufio.NewReader(os.Stdin)
+	writer := bufio.NewWriter(os.Stdout)
 	for {
 		//command data
 		line, _ := reader.ReadBytes('\n')
@@ -37,7 +38,16 @@ func main() {
 			binary.Write(conn, binary.LittleEndian, &test.command)
 		*/
 
-		conn.Write(data)
+		_,err := conn.Write(data)
+		if err != nil {
+			fmt.Println(err)
+		}
+		_,err = conn.Read(buf)
+		if err != nil {
+			fmt.Println(err)
+		}
+		writer.Write(buf)
+		writer.Flush()
 	}
 	fmt.Println("exit client")
 }
