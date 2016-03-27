@@ -1,18 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="e5438c71-92b1-4834-b1c3-0a454dd8fa38" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/util/stringHelp.go" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/export.sh" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gitignore" afterPath="$PROJECT_DIR$/.gitignore" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/client.go" afterPath="$PROJECT_DIR$/src/main/client.go" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/api/server/command.go" afterPath="$PROJECT_DIR$/src/api/server/command.go" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/db/db.go" afterPath="$PROJECT_DIR$/src/db/db.go" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/server.go" afterPath="$PROJECT_DIR$/src/main/server.go" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/test.go" afterPath="$PROJECT_DIR$/src/main/test.go" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/api/server/types.go" afterPath="$PROJECT_DIR$/src/api/server/types.go" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-    </list>
+    <list default="true" id="e5438c71-92b1-4834-b1c3-0a454dd8fa38" name="Default" comment="" />
     <ignored path="go-kv-store.iws" />
     <ignored path=".idea/workspace.xml" />
     <ignored path="$PROJECT_DIR$/out/" />
@@ -64,11 +53,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="command.go" pinned="false" current-in-tab="true">
+      <file leaf-file-name="command.go" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/api/server/command.go">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.35344827">
-              <caret line="125" column="34" selection-start-line="125" selection-start-column="34" selection-end-line="125" selection-end-column="34" />
+            <state vertical-scroll-proportion="0.0">
+              <caret line="10" column="10" selection-start-line="10" selection-start-column="10" selection-end-line="10" selection-end-column="10" />
               <folding>
                 <element signature="e#16#60#0" expanded="true" />
               </folding>
@@ -112,11 +101,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="test.go" pinned="false" current-in-tab="false">
+      <file leaf-file-name="test.go" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/test.go">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="25" column="4" selection-start-line="25" selection-start-column="4" selection-end-line="25" selection-end-column="35" />
+            <state vertical-scroll-proportion="0.8405172">
+              <caret line="26" column="40" selection-start-line="26" selection-start-column="40" selection-end-line="26" selection-end-column="40" />
               <folding>
                 <element signature="e#14#82#0" expanded="true" />
               </folding>
@@ -747,12 +736,12 @@
       <updated>1458876636282</updated>
       <workItem from="1458876638814" duration="14887000" />
       <workItem from="1458909050774" duration="59000" />
-      <workItem from="1459038994565" duration="13036000" />
+      <workItem from="1459038994565" duration="13281000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="27982000" />
+    <option name="totallyTimeSpent" value="28227000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1091,6 +1080,16 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/api/server/command.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="10" column="10" selection-start-line="10" selection-start-column="10" selection-end-line="10" selection-end-column="10" />
+          <folding>
+            <element signature="e#16#60#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/server.go">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -1123,20 +1122,10 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/test.go">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="25" column="4" selection-start-line="25" selection-start-column="4" selection-end-line="25" selection-end-column="35" />
+        <state vertical-scroll-proportion="0.8405172">
+          <caret line="26" column="40" selection-start-line="26" selection-start-column="40" selection-end-line="26" selection-end-column="40" />
           <folding>
             <element signature="e#14#82#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/api/server/command.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.35344827">
-          <caret line="125" column="34" selection-start-line="125" selection-start-column="34" selection-end-line="125" selection-end-column="34" />
-          <folding>
-            <element signature="e#16#60#0" expanded="true" />
           </folding>
         </state>
       </provider>
