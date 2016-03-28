@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"strconv"
 	"object"
+	"reflect"
 )
 
 /* Three types of input
@@ -26,7 +27,8 @@ func Help() string {
 //------------------------------------------------one key no value--------------------------------------------------------
 
 func Select(conn *Connection) {
-	dbNum,err := strconv.Atoi(conn.ReqData.Command)
+	fmt.Println("Select")
+	dbNum,err := strconv.Atoi(conn.ReqData.Key)
 	if err != nil {
 		conn.RespData = "invalid string,input the num"
 		return
@@ -37,6 +39,7 @@ func Select(conn *Connection) {
 }
 
 func Exist(conn *Connection) {
+	fmt.Println("Exist")
 	conn.DB.RLock()
 	if _,err := conn.DB.GetValue(conn.ReqData.Key); err == nil {
 		conn.RespData = "true"
@@ -47,6 +50,7 @@ func Exist(conn *Connection) {
 }
 
 func Get(conn *Connection) {
+	fmt.Println("Get")
 	conn.DB.RLock()
 	value,err := conn.DB.GetValue(conn.ReqData.Key)
 	conn.DB.RUnlock()
@@ -55,9 +59,11 @@ func Get(conn *Connection) {
 	}else {
 		conn.RespData = value.String()
 	}
+	fmt.Println(conn.RespData)
 }
 
 func Del(conn *Connection) {
+	fmt.Println("Del")
 	conn.DB.Lock()
 	ok := conn.DB.DelKey(conn.ReqData.Key)
 	conn.DB.Unlock()
@@ -78,11 +84,20 @@ func Lget(conn *Connection) {
 
 //----------------------------------------------------key and value-----------------------------------------------------
 
-func Set(conn *Connection){
+func Set(conn *Connection) {
+	fmt.Println("Set")
 	conn.DB.Lock()
+	value, err := conn.DB.GetValue(conn.ReqData.Key)
+	if err == nil {
+		if reflect.TypeOf(value).String() != "*object.StrObj" {
+			conn.RespData = conn.ReqData.Key +  " is not a string key"
+			conn.DB.Unlock()
+			return
+		}
+	}
 	strobj := object.NewStringObj()
 	strobj.Set(conn.ReqData.Data)
-	ret := conn.DB.SetValue(conn.ReqData.Key,strobj)
+	ret := conn.DB.SetValue(conn.ReqData.Key, strobj)
 	conn.DB.Unlock()
 	switch ret {
 	case db.UPDATE : conn.RespData = conn.ReqData.Command + " Update " + conn.ReqData.Key
@@ -91,7 +106,16 @@ func Set(conn *Connection){
 }
 
 func Cmap(conn *Connection) {
+	fmt.Println("Cmap")
 	conn.DB.Lock()
+	value, err := conn.DB.GetValue(conn.ReqData.Key)
+	if err == nil {
+		if reflect.TypeOf(value).String() != "*object.MapObj" {
+			conn.RespData = conn.ReqData.Key +  " is not a map key"
+			conn.DB.Unlock()
+			return
+		}
+	}
 	mapobj := object.NewMapObj()
 	mapobj.Set(conn.ReqData.Data)
 	ret := conn.DB.SetValue(conn.ReqData.Key,mapobj)
@@ -103,7 +127,16 @@ func Cmap(conn *Connection) {
 }
 
 func Clist(conn *Connection) {
+	fmt.Println("Clist")
 	conn.DB.Lock()
+	value, err := conn.DB.GetValue(conn.ReqData.Key)
+	if err == nil {
+		if reflect.TypeOf(value).String() != "*object.ListObj" {
+			conn.RespData = conn.ReqData.Key +  " is not a list key"
+			conn.DB.Unlock()
+			return
+		}
+	}
 	listobj := object.NewListObj()
 	listobj.Set(conn.ReqData.Data)
 	ret := conn.DB.SetValue(conn.ReqData.Key,listobj)

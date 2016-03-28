@@ -19,11 +19,11 @@ func main() {
 		return
 	}
 	defer conn.Close()
-	fmt.Println(err)
-	buf := make([]byte, 1024)
+	//fmt.Println(err)
 	reader := bufio.NewReader(os.Stdin)
 	writer := bufio.NewWriter(os.Stdout)
 	for {
+		buf := make([]byte, 1024)
 		//command data
 		line, _ := reader.ReadBytes('\n')
 		data := line[:len(line)-1]
@@ -47,6 +47,7 @@ func main() {
 			fmt.Println(err)
 		}
 		writer.Write(buf)
+		writer.Write([]byte("\n"))
 		writer.Flush()
 	}
 	fmt.Println("exit client")

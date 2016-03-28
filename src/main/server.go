@@ -23,7 +23,7 @@ func handleEvent(conn *server.Connection) {
 	buf := make([]byte, 1024)
 	defer func() {
 		connected--
-		fmt.Printf("Conection closed! Now there are %d connection remained",connected)
+		fmt.Printf("Conection closed! Now there are %d connection remained\n",connected)
 		conn.Conn.Close()
 	}()
 	for {
@@ -40,12 +40,14 @@ func handleEvent(conn *server.Connection) {
 		fmt.Println(string(buf[0:n]))
 		commandLine := string(buf[0:n])
 		command,key,data,err := getCommandAndData(commandLine)
+		fmt.Printf("command = %s , key = %s , data = %s\n",command,key,data)
 		if err != nil {
 			n,err = conn.Conn.Write([]byte(err.Error()))
 			if err != nil {
 				fmt.Println("write data to client error")
 				return
 			}
+			continue
 		}
 		conn.ReqData = &server.Req{Command:command,Key:key,Data:data}
 
@@ -81,6 +83,7 @@ func getCommandAndData(commandLine string)(string,string,string,error) {
 		}
 		return command,key,"",nil
 	}
+	/*
 	data,left,err := util.GetWord(left)
 	if err != nil {
 		return command,key,"",errors.New(command + " " + key + " need data")
@@ -88,7 +91,8 @@ func getCommandAndData(commandLine string)(string,string,string,error) {
 	if left != "" {
 		return command, key, "", errors.New(command + " " + key + " too many args")
 	}
-	return command, key, data, nil
+	*/
+	return command, key, strings.TrimLeft(left," "), nil
 }
 
 func main() {
@@ -98,6 +102,7 @@ func main() {
 		fmt.Println(err)
 		return
 	}
+	fmt.Println("Listening at 8888")
 	defer ln.Close()
 	for {
 		conn, err := ln.Accept()
@@ -106,7 +111,7 @@ func main() {
 			continue
 		}
 		connected++
-		fmt.Printf("New connection! There are %d connections",connected)
+		fmt.Printf("New connection! There are %d connections\n",connected)
 		go handleEvent(&server.Connection{Conn:conn,DB:server.MyServer.DB[0]})
 	}
 
