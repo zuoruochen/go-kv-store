@@ -2,4 +2,4 @@ go-kv-store.iml
 conf/*
 bin/*
 pkg/*
-.idea/
+.idea/*
